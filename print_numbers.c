@@ -144,3 +144,48 @@ int print_hexadecimal(unsigned int n)
   return(_puts(s));
   
 }
+
+
+/**
+
+ * print_hexadecimal_x - prints hex number lowercase
+
+ * @n: number to be printed
+
+ *
+
+ * Return: length of the number printed
+
+ */
+
+int print_hexadecimal_x(unsigned int n)
+  
+{
+  
+  char *s;
+  
+  int i = 0;
+  
+  s = decimal_to_any(n, 16);
+  
+  while (*s != '\0')
+    
+    {
+      
+      if (*s >= 65 && *s <= 97)
+	
+	_putchar(*s++ + 32);
+      
+      else
+	
+	_putchar(*s++);
+      
+      i++;
+      
+    }
+  
+
+  
+  return (i);
+  
+}
