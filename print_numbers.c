@@ -66,3 +66,28 @@ int print_octal(unsigned int n)
   
 }
 
+/**
+
+ * print_binary - prints binary number
+
+ * @n: number to be printed
+
+ *
+
+ * Return: length of the number printed
+
+ */
+
+
+
+int print_binary(unsigned int n)
+  
+{
+  
+  char *s;
+  
+  s = decimal_to_any(n, 2);
+  
+  return(_puts(s));
+  
+}
