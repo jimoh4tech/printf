@@ -75,3 +75,35 @@ s = decimal_to_any(n,  base);
 i += _strlen(s);
 return (i);
 }
+
+
+/**
+
+ * print_rev - printes reverse string
+
+ * @s: pointer to the string
+
+ *
+
+ * Return: Length of the string
+
+ */
+
+
+
+int print_rev (char *s)
+  
+{
+  
+int i, len;
+  
+len = i = _strlen(s);
+  
+while (i > 0)
+    
+{
+i--;
+_putchar(s[i]);
+}
+return (len);
+}
