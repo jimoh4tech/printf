@@ -171,3 +171,73 @@ int print_rot13(char *str)
   
 }
 
+
+/**
+
+ * hex_digit - returns the hex value of any integer
+
+ * @v: integer value
+
+ *
+
+ * Return: char in hex
+
+ */
+
+
+
+char hex_digit(int v)
+  
+{
+  
+  if (v >= 0 && v < 10)
+    
+    return '0' + v;
+  
+  else
+    
+    return 'a' + v - 10;
+  
+}
+
+
+
+/**
+
+ * print_address - prints address of pointers
+
+ * @a: pointer to be printed
+
+ *
+
+ * Return: The length of the pointer
+
+ */
+
+
+
+int print_address(void *a)
+  
+{
+  
+
+  
+  int i, len = 0;
+  
+  uintptr_t p = (uintptr_t)a;
+  
+
+  
+  len = _puts("0x");
+  
+  for(i = (sizeof(p) << 3) - 4; i>=0; i -= 4) {
+    
+    len += _putchar(hex_digit((p >> i) & 0xf));
+    
+  }
+  
+
+  
+  return(len);
+  
+}
