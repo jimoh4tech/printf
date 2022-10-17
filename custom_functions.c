@@ -280,3 +280,64 @@ int addr_len(void *a)
   return(len);
   
 }
+
+
+/**
+
+ * print_special_string - prints custom string according to the
+
+ * the tasks specification
+
+ * @s: pointer to the string
+
+ *
+
+ * Return: length of the string
+
+ */
+
+
+
+int print_special_string(char *s)
+  
+{
+  
+  int i = 0, len = 0;
+  
+  char *keep;
+  
+  if (s == NULL)
+    
+    return(_puts("(null)"));
+  
+
+  
+  for (i = 0; s[i]; i++)
+    
+    {
+      
+      if (s[i] > 0 && (s[i] < 32 || s[i] >= 127))
+	
+	{
+	  
+	  len += _puts("\\x");
+	  
+	  keep = decimal_to_any(s[i], 16);
+	  
+	  if (!keep[1])
+	    
+	    len += _putchar('0');
+	  
+	  len += _puts(keep);
+	  
+	}
+      
+      else
+	
+	len += _putchar(s[i]);
+      
+    }
+  
+  return (len);
+  
+}
