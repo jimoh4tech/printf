@@ -241,3 +241,42 @@ int print_address(void *a)
   return(len);
   
 }
+
+
+/**
+
+ * addr_len - calculates the length of pointers
+
+ * @a: pointer to be calculates
+
+ *
+
+ * Return: length of the pointer
+
+ */
+
+
+
+int addr_len(void *a)
+  
+{
+  
+  int i, len = 0;
+  
+  uintptr_t p = (uintptr_t)a;
+  
+
+  
+  len += 2;
+  
+  for(i = (sizeof(p) << 3) - 4; i>=0; i -= 4) {
+    
+    len++;
+    
+  }
+  
+
+  
+  return(len);
+  
+}
