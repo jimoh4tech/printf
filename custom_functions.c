@@ -78,29 +78,19 @@ return (i);
 
 
 /**
-
  * print_rev - printes reverse string
-
  * @s: pointer to the string
-
  *
-
  * Return: Length of the string
-
  */
 
 
-
-int print_rev (char *s)
-  
+int print_rev (char *s)  
 {
-  
-int i, len;
-  
+int i, len; 
 len = i = _strlen(s);
-  
 while (i > 0)
-    
+
 {
 i--;
 _putchar(s[i]);
@@ -110,65 +100,37 @@ return (len);
 
 
 /**
-
  * print_rot13 - prints the rot13 of a string
-
  * @str: pointer to the string
-
  *
-
  * Return: length of the str
-
  */
 
 
 
 int print_rot13(char *str)
-  
 {
-  
-  int i;
-  
-  char *s;
-  
-  s = malloc(sizeof(char) * (_strlen(str) + 1));
-  
-  if (!s)
-    
-    free(s);
-  
-  for (i = 0; str[i] != '\0'; i++)
-    
-    {
-      
-      if ((str[i] >= 'a' && str[i] < 'n')
-	  
-	  || (str[i] >= 'A' && str[i] < 'N'))
-	
-	{
-	  
-	  s[i] = str[i] + 13;
-	  
-	}
-      
-      else if ((str[i] >= 'n' && str[i] <= 'z')
-	       
-	       || (str[i] >= 'N' && str[i] <= 'Z'))
-	
-	{
-	  
-	  s[i] = str[i] - 13;
-	  
-	}
-      
-    }
-  
-  s[i] = '\0';
-  
-  i = _puts(s);
-  
-  return (i);
-  
+int i;
+char *s;
+s = malloc(sizeof(char) * (_strlen(str) + 1));
+if (!s)
+free(s);
+for (i = 0; str[i] != '\0'; i++)
+{
+if ((str[i] >= 'a' && str[i] < 'n')
+|| (str[i] >= 'A' && str[i] < 'N'))
+{
+s[i] = str[i] + 13;
+}
+else if ((str[i] >= 'n' && str[i] <= 'z')
+|| (str[i] >= 'N' && str[i] <= 'Z'))
+{
+s[i] = str[i] - 13;
+}
+} 
+s[i] = '\0';  
+i = _puts(s);
+return (i);
 }
 
 
