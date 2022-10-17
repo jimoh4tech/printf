@@ -32,6 +32,6 @@ int int_helper(int n, int plus, int space, int zero, int width);
 int check_format(char c);
 int format_helper(va_list arg, char c, int width,
 int zero, int size, int plus, int space, int hash);
-
+int _printf(const char *format, ...);
 
 #endif /* PRINT_F */

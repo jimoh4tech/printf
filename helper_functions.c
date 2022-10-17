@@ -91,12 +91,12 @@ return (0);
  * Return: length of the number printed
  */
 int format_helper(va_list arg, char c, int width,
-int zero, int size, int plus, int space, int hash)
+int zero, int size, int plus, int space, __attribute__((unused))int hash)
 {
 int len = 0, integer = 0;
-unsigned int u_int = 0;
+__attribute__((unused)) unsigned int u_int = 0;
 char *str;
-void *addr;
+__attribute__((unused)) void *addr;
 switch (c)
 {
 case 'c':

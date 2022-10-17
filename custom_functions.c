@@ -53,3 +53,25 @@ i += _putchar(' ');
 }
 return (i);
 }
+
+/**
+ * num_len - calculates the length of numbers
+ * @n: the number
+ * @base: base of the number
+ *
+ * Return: length of the number
+ */
+
+int num_len(int n, int base)
+{
+int i = 0;
+char *s;
+if (n < 0)
+{
+n *= -1;
+i++;
+}
+s = decimal_to_any(n,  base);
+i += _strlen(s);
+return (i);
+}
