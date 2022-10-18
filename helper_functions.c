@@ -90,34 +90,73 @@ return (0);
  *
  * Return: length of the number printed
  */
-int format_helper(va_list arg, char c, int width,
-int zero, int size, int plus, int space, __attribute__((unused))int hash)
+int format_helper(va_list arg, char c, int width, int zero, int size, int plus, int space, int hash)
 {
 int len = 0, integer = 0;
-__attribute__((unused)) unsigned int u_int = 0;
+unsigned int u_int = 0;
 char *str;
-__attribute__((unused)) void *addr;
+void *addr;
 switch (c)
 {
 case 'c':
 len += print_space(width, 1, zero);
 len += _putchar(va_arg(arg, int));
 break;
-
 case 's':
 str = va_arg(arg, char *);
 size = _strlen(str);
 len += print_space(width, size, zero);
 len += _puts(str);
 break;
-
 case 'i':
 case 'd':
 integer = va_arg(arg, int);
 len += int_helper(integer, plus, space, zero, width);
 break;
-
+case 'S':
+print_special_string(va_arg(arg, char *));
+break;
+case 'b':
+len += print_binary(va_arg(arg, int));
+break;
+case 'u':
+u_int = va_arg(arg, int);
+size = num_len(u_int, 10);
+len += print_space(width, size, zero);
+len += print_unsigned_int(u_int);
+break;
+case 'o':
+u_int = va_arg(arg, int);
+len += base_helper(u_int, "0", 8, width, zero, hash);
+len += print_octal(u_int);
+break;
+case 'p':
+addr = va_arg(arg, void *);
+size = addr_len(addr);
+len += print_space(width, size, zero);
+len += print_address(addr);
+break;
+case 'x':
+u_int = va_arg(arg, int);
+len += base_helper(u_int, "0x", 16, width, zero, hash);
+len += print_hexadecimal_x(u_int);
+break;
+case 'X':
+u_int = va_arg(arg, int);
+len += base_helper(u_int, "0X", 16, width, zero, hash);
+len += print_hexadecimal(u_int);
+break;
+case 'r':
+len += print_rev(va_arg(arg, char *));
+break;
+case 'R':
+len += print_rot13(va_arg(arg, char *));
+break;
+case '%':
+len += _putchar('%');
+break;
 default:
+len += _putchar('r');
 break;
 }
 return (len);
