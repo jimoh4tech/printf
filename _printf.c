@@ -14,6 +14,8 @@ va_list arg;
 int plus = 0, space = 0, hash = 0, width = 0, zero = 0;
 if (!format || (format[0] == '%' && !format[1]))
 return (-1);
+if (format[0] == '%' && format[1] == ' ' && !format[2])
+return (-1);
 va_start(arg, format);
 while (format[i] != '\0')
 {
