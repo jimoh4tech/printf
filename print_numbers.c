@@ -47,25 +47,11 @@ return (i);
  * Return: length of the number printed
  */
 
-int print_octal(unsigned int n) 
+int print_octal(unsigned int n)
 {
 char *s;
-s = decimal_to_any(n, 8);  
-return(_puts(s));  
-}
-
-/**
- * print_binary - prints binary number
- * @n: number to be printed
- *
- * Return: length of the number printed
- */
-
-int print_binary(unsigned int n)
-{
-char *s;
-s = decimal_to_any(n, 2);
-return(_puts(s));  
+s = decimal_to_any(n, 8);
+return (_puts(s));
 }
 
 
@@ -75,27 +61,12 @@ return(_puts(s));
  *
  * Return: length of the number printed
  */
-
-int print_hexadecimal(unsigned int n)
-{
-char *s;
-s = decimal_to_any(n, 16);  
-return(_puts(s));  
-}
-
-/**
- * print_hexadecimal - prints hex number uppercase
- * @n: number to be printed
- *
- * Return: length of the number printed
- */
-
 
 int print_hexadecimal(unsigned int n)
 {
 char *s;
 s = decimal_to_any(n, 16);
-return(_puts(s));  
+return (_puts(s));
 }
 
 
@@ -112,12 +83,12 @@ char *s;
 int i = 0;
 s = decimal_to_any(n, 16);
 while (*s != '\0')
-{      
-if (*s >= 65 && *s <= 97)	
-_putchar(*s++ + 32);      
-else	
+{
+if (*s >= 65 && *s <= 97)
+_putchar(*s++ + 32);
+else
 _putchar(*s++);
 i++;
-}   
-return (i);  
+}
+return (i);
 }
