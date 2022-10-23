@@ -9,8 +9,8 @@
 
 int _putchar(char c)
 {
-write(1, &c, 1);
-return (1);
+	write(1, &c, 1);
+	return (1);
 }
 
 /**
@@ -22,14 +22,15 @@ return (1);
 
 int _puts(char *s)
 {
-int i;
-if (s == NULL)
-return (_puts("(null)"));
+	int i;
 
-for (i = 0; s[i] != '\0'; i++)
-_putchar(s[i]);
+	if (s == NULL)
+		return (_puts("(null)"));
 
-return (i);
+	for (i = 0; s[i] != '\0'; i++)
+		_putchar(s[i]);
+
+	return (i);
 }
 
 /**
@@ -41,11 +42,11 @@ return (i);
 
 int _strlen(char *s)
 {
-int i = 0;
+	int i = 0;
 
-if (s)
-while (s[i] != '\0')
-i++;
+	if (s)
+		while (s[i] != '\0')
+			i++;
 
-return (i);
+	return (i);
 }

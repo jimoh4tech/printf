@@ -15,17 +15,18 @@
  */
 int int_helper(int n, int plus, int space, int zero, int width)
 {
-int len = 0, size;
-size = num_len(n, 10);
-if (plus && n >= 0)
-len += _putchar('+');
-if (space && !plus && n >= 0)
-len += _putchar(' ');
+	int len = 0, size;
 
-len += print_space(width, size, zero);
-len += print_int(n);
+	size = num_len(n, 10);
+	if (plus && n >= 0)
+		len += _putchar('+');
+	if (space && !plus && n >= 0)
+		len += _putchar(' ');
 
-return (len);
+	len += print_space(width, size, zero);
+	len += print_int(n);
+
+	return (len);
 }
 
 
@@ -47,13 +48,14 @@ return (len);
 int base_helper(unsigned int n, char *s, int base,
 int width, int zero, int hash)
 {
-int len = 0, size;
-size = num_len(n, base);
-if (hash && n > 0)
-len += _puts(s);
+	int len = 0, size;
 
-len += print_space(width, size, zero);
-return (len);
+	size = num_len(n, base);
+	if (hash && n > 0)
+		len += _puts(s);
+
+	len += print_space(width, size, zero);
+	return (len);
 }
 
 /**
@@ -66,12 +68,12 @@ return (len);
 
 int check_format(char c)
 {
-if (!(c == 'c' || c == 's' || c == 'i' || c == 'd' || c == 'u'
-|| c == 'x' || c == 'S' || c == '%' || c == 'X' || c == 'b'
-|| c == 'o' || c == 'p' || c == 'r' || c == 'R'))
-return (1);
+	if (!(c == 'c' || c == 's' || c == 'i' || c == 'd' || c == 'u'
+	      || c == 'x' || c == 'S' || c == '%' || c == 'X' || c == 'b'
+	      || c == 'o' || c == 'p' || c == 'r' || c == 'R'))
+		return (1);
 
-return (0);
+	return (0);
 }
 
 /**
@@ -92,72 +94,73 @@ return (0);
  */
 int format_helper(va_list arg, char c, int width, int zero, int size, int plus, int space, int hash)
 {
-int len = 0, integer = 0;
-unsigned int u_int = 0;
-char *str;
-void *addr;
-switch (c)
-{
-case 'c':
-len += print_space(width, 1, zero);
-len += _putchar(va_arg(arg, int));
-break;
-case 's':
-str = va_arg(arg, char *);
-size = _strlen(str);
-len += print_space(width, size, zero);
-len += _puts(str);
-break;
-case 'i':
-case 'd':
-integer = va_arg(arg, int);
-len += int_helper(integer, plus, space, zero, width);
-break;
-case 'S':
-print_special_string(va_arg(arg, char *));
-break;
-case 'b':
-len += print_binary(va_arg(arg, int));
-break;
-case 'u':
-u_int = va_arg(arg, int);
-size = num_len(u_int, 10);
-len += print_space(width, size, zero);
-len += print_unsigned_int(u_int);
-break;
-case 'o':
-u_int = va_arg(arg, int);
-len += base_helper(u_int, "0", 8, width, zero, hash);
-len += print_octal(u_int);
-break;
-case 'p':
-addr = va_arg(arg, void *);
-size = addr_len(addr);
-len += print_space(width, size, zero);
-len += print_address(addr);
-break;
-case 'x':
-u_int = va_arg(arg, int);
-len += base_helper(u_int, "0x", 16, width, zero, hash);
-len += print_hexadecimal_x(u_int);
-break;
-case 'X':
-u_int = va_arg(arg, int);
-len += base_helper(u_int, "0X", 16, width, zero, hash);
-len += print_hexadecimal(u_int);
-break;
-case 'r':
-len += print_rev(va_arg(arg, char *));
-break;
-case 'R':
-len += print_rot13(va_arg(arg, char *));
-break;
-case '%':
-len += _putchar('%');
-break;
-default:
-len += _putchar('r');
-break;
-}
-return (len);
+	int len = 0, integer = 0;
+	unsigned int u_int = 0;
+	char *str;
+	void *addr;
+	
+	switch (c)
+	{
+	case 'c':
+		len += print_space(width, 1, zero);
+		len += _putchar(va_arg(arg, int));
+		break;
+	case 's':
+		str = va_arg(arg, char *);
+		size = _strlen(str);
+		len += print_space(width, size, zero);
+		len += _puts(str);
+		break;
+	case 'i':
+	case 'd':
+		integer = va_arg(arg, int);
+		len += int_helper(integer, plus, space, zero, width);
+		break;
+	case 'S':
+		print_special_string(va_arg(arg, char *));
+		break;
+	case 'b':
+		len += print_binary(va_arg(arg, int));
+		break;
+	case 'u':
+        	u_int = va_arg(arg, int);
+		size = num_len(u_int, 10);
+		len += print_space(width, size, zero);
+		len += print_unsigned_int(u_int);
+		break;
+	case 'o':
+		u_int = va_arg(arg, int);
+		len += base_helper(u_int, "0", 8, width, zero, hash);
+		len += print_octal(u_int);
+		break;
+	case 'p':
+		addr = va_arg(arg, void *);
+		size = addr_len(addr);
+		len += print_space(width, size, zero);
+		len += print_address(addr);
+		break;
+	case 'x':
+		u_int = va_arg(arg, int);
+		len += base_helper(u_int, "0x", 16, width, zero, hash);
+		len += print_hexadecimal_x(u_int);
+		break;
+	case 'X':
+		u_int = va_arg(arg, int);
+		len += base_helper(u_int, "0X", 16, width, zero, hash);
+		len += print_hexadecimal(u_int);
+		break;
+	case 'r':
+		len += print_rev(va_arg(arg, char *));
+		break;
+	case 'R':
+		len += print_rot13(va_arg(arg, char *));
+		break;
+	case '%':
+		len += _putchar('%');
+		break;
+	default:
+		len += _putchar('r');
+		break;
+	}
+	return (len);
 }

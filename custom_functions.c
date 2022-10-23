@@ -10,19 +10,20 @@
 
 char *decimal_to_any(unsigned int n, int base)
 {
-char *s;
-s = malloc(100);
-if (s == NULL)
-free(s);
+	char *s;
 
-*s = '\0';
-do {
-s--;
-*s = "0123456789ABCDEF"[n % base];
-n /= base;
-} while (n);
+	s = malloc(100);
+	if (s == NULL)
+		free(s);
 
-return (s);
+	*s = '\0';
+	do {
+		s--;
+		*s = "0123456789ABCDEF"[n % base];
+		n /= base;
+	} while (n);
+
+	return (s);
 }
 
 /**
@@ -36,22 +37,23 @@ return (s);
 
 int print_space(int width, int size, int zero)
 {
-int i = 0;
-if (width && width >= size)
-size = width - size;
-else
-size = 0;
+	int i = 0;
 
-while (size)
-{
-if (zero)
-i += _putchar('0');
-else
-i += _putchar(' ');
+	if (width && width >= size)
+		size = width - size;
+	else
+		size = 0;
 
---size;
-}
-return (i);
+	while (size)
+	{
+		if (zero)
+			i += _putchar('0');
+		else
+			i += _putchar(' ');
+
+		--size;
+	}
+	return (i);
 }
 
 /**
@@ -64,16 +66,17 @@ return (i);
 
 int num_len(int n, int base)
 {
-int i = 0;
-char *s;
-if (n < 0)
-{
-n *= -1;
-i++;
-}
-s = decimal_to_any(n,  base);
-i += _strlen(s);
-return (i);
+	int i = 0;
+	char *s;
+
+	if (n < 0)
+	{
+		n *= -1;
+		i++;
+	}
+	s = decimal_to_any(n,  base);
+	i += _strlen(s);
+	return (i);
 }
 
 
@@ -87,15 +90,15 @@ return (i);
 
 int print_rev(char *s)
 {
-int i, len;
-len = i = _strlen(s);
-while (i > 0)
+	int i, len;
 
-{
-i--;
-_putchar(s[i]);
-}
-return (len);
+	len = i = _strlen(s);
+	while (i > 0)
+	{
+		i--;
+		_putchar(s[i]);
+	}
+	return (len);
 }
 
 
@@ -108,25 +111,26 @@ return (len);
 
 int print_rot13(char *str)
 {
-int i;
-char *s;
-s = malloc(sizeof(char) * (_strlen(str) + 1));
-if (!s)
-free(s);
-for (i = 0; str[i] != '\0'; i++)
-{
-if ((str[i] >= 'a' && str[i] < 'n')
-|| (str[i] >= 'A' && str[i] < 'N'))
-{
-s[i] = str[i] + 13;
-}
-else if ((str[i] >= 'n' && str[i] <= 'z')
-|| (str[i] >= 'N' && str[i] <= 'Z'))
-{
-s[i] = str[i] - 13;
-}
-}
-s[i] = '\0';
-i = _puts(s);
-return (i);
+	int i;
+	char *s;
+
+	s = malloc(sizeof(char) * (_strlen(str) + 1));
+	if (!s)
+		free(s);
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if ((str[i] >= 'a' && str[i] < 'n')
+		    || (str[i] >= 'A' && str[i] < 'N'))
+		{
+			s[i] = str[i] + 13;
+		}
+		else if ((str[i] >= 'n' && str[i] <= 'z')
+			 || (str[i] >= 'N' && str[i] <= 'Z'))
+		{
+			s[i] = str[i] - 13;
+		}
+	}
+	s[i] = '\0';
+	i = _puts(s);
+	return (i);
 }
